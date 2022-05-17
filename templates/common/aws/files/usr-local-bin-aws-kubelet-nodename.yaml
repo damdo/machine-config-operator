@@ -18,5 +18,5 @@ contents:
     # metadata related afterburn doc: https://coreos.github.io/afterburn/usage/attributes/
     cat > "${NODECONF}" <<EOF
     [Service]
-    Environment="KUBELET_NODE_NAME=${AFTERBURN_AWS_HOSTNAME}"
+    Environment="KUBELET_NODE_NAME=$(dig +short -x ${AFTERBURN_AWS_IPV4_LOCAL} | sed 's/\.$//')"
     EOF
